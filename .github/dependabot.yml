@@ -10,3 +10,6 @@ updates:
       - "go dependencies"
     reviewers:
       - beyazit
+    commit-message:
+      prefix: "chore(deps)"
+
