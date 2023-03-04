@@ -22,7 +22,7 @@ func init() {
 
 func main() {
 	http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if config.GetWithFallback("PRODUCTION", "false") == "true" {
+		if config.GetWithFallback("PRODUCTION", "true") == "true" {
 			fmt.Fprint(w, "Hello World!")
 		} else {
 			w.Write(graphiql.Page)
