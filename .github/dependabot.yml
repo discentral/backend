@@ -5,6 +5,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "sunday"
+    target-branch: "dev"
     labels:
       - "go dependencies"
     reviewers:
