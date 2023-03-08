@@ -1,9 +1,16 @@
 package config
 
-import "os"
+import (
+	"log"
+	"os"
+)
 
 func Get(key string) string {
-	return os.Getenv(key)
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	log.Fatalf("%s is not set.\n", key)
+	return ""
 }
 
 func GetWithFallback(key, fallback string) string {

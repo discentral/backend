@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/discentral/backend/internal/query"
+	"github.com/discentral/backend/internal/root"
 	"github.com/discentral/backend/pkg/config"
 	"github.com/discentral/backend/pkg/graphiql"
 	"github.com/discentral/backend/pkg/sdl"
@@ -17,13 +16,13 @@ import (
 var schema *graphql.Schema
 
 func init() {
-	schema = graphql.MustParseSchema(sdl.Schema, &query.Resolver{})
+	schema = graphql.MustParseSchema(sdl.Schema, &root.Resolver{})
 }
 
 func main() {
 	http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if config.GetWithFallback("PRODUCTION", "true") == "true" {
-			fmt.Fprint(w, "Hello World!")
+			w.Write([]byte("Hello World!"))
 		} else {
 			w.Write(graphiql.Page)
 		}
